@@ -35,19 +35,36 @@ export default function Contact() {
 
     setStatus("submitting");
 
-    // Simulate sending progress
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const formspreeKey = process.env.NEXT_PUBLIC_FORMSPREE_KEY || "mzdnrrqv";
 
-    setStatus("sent");
-    setForm({ name: "", email: "", subject: "", message: "" });
+    try {
+      const response = await fetch(`https://formspree.io/f/${formspreeKey}`, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-    // Success Confetti Spray!
-    confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ["#3B82F6", "#8B5CF6", "#06B6D4", "#ffffff"],
-    });
+      if (response.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", subject: "", message: "" });
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ["#3B82F6", "#8B5CF6", "#06B6D4", "#ffffff"],
+        });
+      } else {
+        const result = await response.json();
+        setError(result.errors?.[0]?.message || "Failed to send message. Please try again.");
+        setStatus("idle");
+      }
+    } catch (err) {
+      setError("A network error occurred. Please try again.");
+      setStatus("idle");
+    }
   };
 
   const isFloating = (field: "name" | "email" | "subject" | "message") => {
