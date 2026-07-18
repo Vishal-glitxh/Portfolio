@@ -38,10 +38,10 @@ export default function Contact() {
     const formspreeKey = process.env.NEXT_PUBLIC_FORMSPREE_KEY || "mzdnrrqv";
 
     try {
-      const response = await fetch(`https://formspree.io/f/${formspreeKey}`, {
+      const response = await fetch("https://formspree.io/f/mzdnrrqv", {
         method: "POST",
         headers: {
-          "Accept": "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
@@ -181,7 +181,7 @@ export default function Contact() {
                     Send Email
                   </a>
                 </Magnetic>
-                
+
                 <Magnetic range={30} strength={0.25}>
                   <a
                     href="https://www.linkedin.com/in/vishalsuhas"
@@ -215,10 +215,10 @@ export default function Contact() {
           <div className="lg:col-span-7">
             <Card glowColor="cyan" className="h-full">
               <h4 className="text-xl font-bold text-white mb-6 font-heading">Send Message</h4>
-              
+
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  
+
                   {/* Floating Input Name */}
                   <div className="relative w-full">
                     <input
@@ -235,10 +235,9 @@ export default function Contact() {
                     <label
                       htmlFor="name-input"
                       className={`absolute left-4 pointer-events-none transition-all duration-300 font-bold tracking-wider uppercase
-                        ${
-                          isFloating("name")
-                            ? "top-2 text-[9px] text-cyan-400"
-                            : "top-4 text-[10px] text-slate-500"
+                        ${isFloating("name")
+                          ? "top-2 text-[9px] text-cyan-400"
+                          : "top-4 text-[10px] text-slate-500"
                         }`}
                     >
                       Name
@@ -261,10 +260,9 @@ export default function Contact() {
                     <label
                       htmlFor="email-input"
                       className={`absolute left-4 pointer-events-none transition-all duration-300 font-bold tracking-wider uppercase
-                        ${
-                          isFloating("email")
-                            ? "top-2 text-[9px] text-cyan-400"
-                            : "top-4 text-[10px] text-slate-500"
+                        ${isFloating("email")
+                          ? "top-2 text-[9px] text-cyan-400"
+                          : "top-4 text-[10px] text-slate-500"
                         }`}
                     >
                       Email Address
@@ -289,10 +287,9 @@ export default function Contact() {
                   <label
                     htmlFor="subject-input"
                     className={`absolute left-4 pointer-events-none transition-all duration-300 font-bold tracking-wider uppercase
-                      ${
-                        isFloating("subject")
-                          ? "top-2 text-[9px] text-cyan-400"
-                          : "top-4 text-[10px] text-slate-500"
+                      ${isFloating("subject")
+                        ? "top-2 text-[9px] text-cyan-400"
+                        : "top-4 text-[10px] text-slate-500"
                       }`}
                   >
                     Subject
@@ -315,10 +312,9 @@ export default function Contact() {
                   <label
                     htmlFor="message-input"
                     className={`absolute left-4 pointer-events-none transition-all duration-300 font-bold tracking-wider uppercase
-                      ${
-                        isFloating("message")
-                          ? "top-2 text-[9px] text-cyan-400"
-                          : "top-4.5 text-[10px] text-slate-500"
+                      ${isFloating("message")
+                        ? "top-2 text-[9px] text-cyan-400"
+                        : "top-4.5 text-[10px] text-slate-500"
                       }`}
                   >
                     Message
